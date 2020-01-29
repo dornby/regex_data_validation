@@ -1,0 +1,18 @@
+<h1>What is your Validation?</h1>
+<form action="/regex" method="post">
+  / <input type="text" name="regex" value="<%= @regex.body if !@regex.nil? %>"> /
+  <input type="submit">
+</form>
+
+<% if !@regex.nil? %>
+  <h2>Here is the possible data that will pass this validation:</h2>
+  <ul>
+  <% @regex.results.all.each do |result| %>
+    <% if result.is_valid %>
+      <li>
+        <%= result.body %>
+      </li>
+    <% end %>
+  <% end %>
+  </ul>
+<% end %>
